@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import s from "./FormCard.module.css";
 
 export default function FormCard({ children, errorMessage="", onSubmit, widthSize=15, ...props }){
@@ -8,7 +8,7 @@ export default function FormCard({ children, errorMessage="", onSubmit, widthSiz
     return(
         <form onSubmit={onSubmit} 
               className={s.form} {...props}
-              style={{ width: `min(${widthSize}rem, 100%)` }}>
+              style={{ width: widthSize === "full" ? "100%" : `min(${widthSize}rem, 100%)` }}>
             <div className={`${s.form__error} ${activeError && s.errorActive}`}>
                 <span>
                     {errorMessage}

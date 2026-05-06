@@ -16,7 +16,12 @@ export default function InputField({ type="text", id=null, icon=null, ...props }
                     <Icon/>
                 </label>
             )}
-            <input type={type} id={id} {...props} />
+            
+            {type === "textarea" ? (
+                <textarea id={id} {...props}></textarea>
+            ) : (
+                <input type={type} id={id} {...props} />
+            )}
         </div>
     )
 }

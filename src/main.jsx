@@ -25,11 +25,11 @@ let routes = createBrowserRouter([
     element: <ProtectedRoute> <App/> </ProtectedRoute>,
     children: [
       { index: true, path: "/:category?", element: <Home/> },
-      { path: "/post/:id?",   element: <ViewPost/>    },
-      { path: "/user/:id?",   element: <ViewUser/>    },
-      { path: "/edit/:id?",   element: <EditPost/>    },
-      { path: "/delete/:id?", element: <DeletePost/>  },
-      { path: "/userarea",    element: <UserArea/>    }
+      { path: "/post/:id?",   element: <ViewPost/>   },
+      { path: "/user/:id?",   element: <ViewUser/>   },
+      { path: "/edit/:id?",   element: <EditPost/>   },
+      { path: "/delete/:id?", element: <DeletePost/> },
+      { path: "/userarea",    element: <UserArea/>   }
   ]},
 
     { path: "/login", element: <Login/> },

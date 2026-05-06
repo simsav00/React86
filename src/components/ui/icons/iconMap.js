@@ -6,6 +6,7 @@ import DeleteIcon from "./DeleteIcon";
 import LoginIcon from "./LoginIcon";
 import RegisterIcon from "./RegisterIcon";
 import ShareIcon from "./ShareIcon";
+import BackIcon from "./BackIcon";
 
 const icons = {
   comment: CommentIcon,
@@ -16,6 +17,7 @@ const icons = {
   login: LoginIcon,
   register: RegisterIcon,
   share: ShareIcon,
+  back: BackIcon
 };
 
 export default icons;

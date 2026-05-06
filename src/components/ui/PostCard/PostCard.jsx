@@ -17,6 +17,9 @@ export default function PostCard({ username,
                                    footer=false, 
                                    footerProps, 
                                    brighter=false,
+                                   tight=false,
+                                   contentType="post",
+                                   small=false,
                                    style,
                                    className, 
                                    ...props }){
@@ -50,7 +53,11 @@ export default function PostCard({ username,
     }
 
     return(
-        <FluentCard elementType="article" brighter={brighter} className={`${s.postcard} ${className || ""}`} {...props}>
+        <FluentCard elementType="article" 
+                    brighter={brighter} 
+                    className={`${s.postcard} ${className || ""}`}   
+                    style={{ padding: tight ? ".5rem" : "1rem", ...style }}
+                    {...props}>
 
             <header className={s.postcard__header}>
                 {profile && (
@@ -76,25 +83,39 @@ export default function PostCard({ username,
                 </div>  
             </header>
 
-            <figure className={s.postcard__figure}>
-                <figcaption className={s.postcard__figcaption}>
+            {contentType === "post" ? (
+                <figure className={s.postcard__figure}>
+                    <figcaption className={s.postcard__figcaption}>
 
-                    {title && (
-                        <h2 className={s.postcard__title}>
-                            {title}
-                        </h2>
-                    )}
-                        
+                        {title && (
+                            <h2 className={s.postcard__title}>
+                                {title}
+                            </h2>
+                        )}
+                            
+                        {description && (
+                            <p className={s.postcard__desc}>
+                                {description}   
+                            </p>
+                        )}
+
+                    </figcaption>
+
+                    {media}
+                </figure>   
+            ) : contentType === "comment" ? (
+
+                <div className={s.postcard__figcaption}>
+
                     {description && (
                         <p className={s.postcard__desc}>
                             {description}   
                         </p>
                     )}
 
-                </figcaption>
+                </div>
+            ) : null}
 
-                {media}
-            </figure>   
 
             {footer && (
                 <footer className={s.postcard__footer}>
@@ -105,8 +126,8 @@ export default function PostCard({ username,
                             
                             return (
                                 showOnCondition && (
-                                    <Link key={title} title={title} to={link}>
-                                        <IconButton text={text}>
+                                    <Link key={title} to={link} title={title} aria-label={title}>
+                                        <IconButton text={text} aria-hidden={true}>
                                             {Icon && <Icon/>}
                                         </IconButton>
                                     </Link>
@@ -122,8 +143,8 @@ export default function PostCard({ username,
                             
                             return (
                                 showOnCondition && (
-                                    <Link key={title} title={title} to={link}>
-                                        <IconButton text={text}>
+                                    <Link key={title} title={title} to={link} aria-label={title}>
+                                        <IconButton text={text} aria-hidden={true}>
                                             {Icon && <Icon/>}
                                         </IconButton>
                                     </Link>

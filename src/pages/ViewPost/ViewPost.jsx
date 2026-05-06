@@ -4,13 +4,15 @@ import s from "./ViewPost.module.css";
 import { useAuth } from "../../hooks/auth";
 import { useEffect, useState } from "react";
 import FluentCard from "../../components/ui/FluentCard";
+import BackButton from "../../components/ui/BackButton";
+import ViewComment from "../ViewComment/ViewComment";
 import nProgress from "nprogress";
 
 export default function ViewPost(){
 
     const navigate = useNavigate();
     const { id } = useParams();
-    const { fetchBackend } = useAuth();
+    const { fetchBackend, user } = useAuth();
     const [post, setPost] = useState(null);
     const [comment, setComment] = useState(null);
 
@@ -33,7 +35,7 @@ export default function ViewPost(){
 
             console.log(json);
             
-            setPost(json.data);
+            setPost(post);
             comments && setComment(comments);
         }
         catch(e){
@@ -54,7 +56,17 @@ export default function ViewPost(){
 
     return(
         <section className={s.viewpost}>
+
             {post && (
+                <>
+
+                <FluentCard className={s.viewpost__header}>
+                    <BackButton/>
+
+                    <span className={s.viewpost__headerTitle}>
+                        View post in #{post?.category} ({post?.id})
+                    </span>
+                </FluentCard>
 
                 <PostCard
                     title={post.title}
@@ -67,25 +79,14 @@ export default function ViewPost(){
                     attachmentSize={30}
                 />
 
+                <ViewComment comments={post.comments}/>
+
+                </>
+
             )}
 
                 
-            <FluentCard className={s.viewpost__comment}>
 
-                {comment?.map((cmt, idx) => (
-
-                    <PostCard
-                        brighter={true}
-                        key={cmt.id || idx}
-                        description={cmt.comment}
-                        username={cmt.username}
-                        profile={{ avatar: cmt.avatar, link: `/user/${post.author_id}` ,small: true }}
-                        datetime={post.post_date}
-                    />
-
-                ))}
-
-            </FluentCard>
 
         </section>
     )

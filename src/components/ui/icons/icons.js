@@ -6,4 +6,5 @@ export { default as DeleteIcon } from "./DeleteIcon";
 export { default as LoginIcon } from "./LoginIcon";
 export { default as RegisterIcon } from "./RegisterIcon";
 export { default as ShareIcon } from "./ShareIcon";
+export { default as BackIcon} from "./BackIcon";
 

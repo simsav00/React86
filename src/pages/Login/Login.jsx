@@ -42,7 +42,7 @@ export default function Login(){
 
         try{
             await login(formData);
-            navigate("/", { replace: true });
+            navigate("/", replace);
         }
         catch(err) {
             setError(err.message);
