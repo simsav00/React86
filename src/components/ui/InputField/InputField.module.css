@@ -1,0 +1,65 @@
+.field{
+    margin-top: 1rem;
+}
+
+.field:has(input[type=submit]),
+.field:has(button[type=submit]){
+    margin-top: 2rem;
+}
+
+.field > input{
+    width: 100%;
+    padding: .35rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.field > label svg{
+    width: 1.5rem;
+}
+
+.field > input[type=submit],
+.field > button[type=submit]{
+    background: var(--elevated-component);
+    border: none;
+    border-radius: .25rem;
+    padding:.5rem;
+    transition: .1s opacity;
+}
+
+.field > input[type=submit]:hover,
+.field > button[type=submit]:hover{
+    opacity: .8;
+}
+
+.field:has(input[type=password]),
+.field:has(input[type=text]),
+.field:has(textarea){
+    display: flex;
+    align-items: center;
+    opacity: .6;
+    border: 2px solid currentColor;
+    padding: .15rem;
+    border-radius: .35rem;
+
+    transition: .1s opacity;
+}
+
+.field > input[type=password]:focus,
+.field > input[type=text]:focus,
+.field > textarea:focus{
+    outline: none;
+}
+
+.field:has(input[type=text]):focus-within,
+.field:has(input[type=password]):focus-within,
+.field:has(textarea):focus-within {
+    opacity: 1;
+}
+
+.field > input[type=password],
+.field > input[type=text],
+.field > textarea{
+    background: none;
+    border: none;
+}

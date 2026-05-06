@@ -1,0 +1,21 @@
+
+.post__lists{
+    width: min(32rem, 100%);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+}
+
+.post__lists .post__entry:not(:first-child){
+    animation: slide .3s ease;
+}
+
+@keyframes slide{
+    from{
+        transform: translateY(-200%);
+    }
+    to{
+        transform: none;
+    }
+}

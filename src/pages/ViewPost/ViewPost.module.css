@@ -1,0 +1,10 @@
+.viewpost{
+    width: min(100rem, 100%);
+    margin: 0 auto;
+}
+
+.viewpost__comment{
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}

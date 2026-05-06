@@ -1,0 +1,63 @@
+@import "../fonts/Inter/stylesheet.css";
+@import "../fonts/Orbitron/stylesheet.css";
+
+html {
+  --inter-font: Inter, system-ui;
+  --orbitron-font: Orbitron, system-ui;
+  --surface: hsla(219,50%,10%,1);
+  --elevated:hsla(220,22%,20%,1);
+  --elevated-component:hsla(220,22%,35%,1);
+  --hover: hsla(220,19%,25%,1);
+  --elevated-accent: hsla(220,22%,35%,1);
+  --elevated-accent-hover: hsla(220,22%,30%,1);
+  --logo-red: hsl(0, 100%, 65%);
+  --logo-white: currentColor;
+  --highlight-80:hsla(0,0%,100%,.8);
+  --highlight-60:hsla(0,0%,100%,.6);
+  --highlight-40:hsla(0,0%,100%,.4);
+  --highlight-20:hsla(0,0%,100%,.2);
+
+  --notif-box: hsla(194,75%,50%,1);
+  --success-box: hsla(144,50%,50%,1);
+  --error-box: hsla(0, 100%,50%,1);
+  
+  --font-primary: hsla(0,0%,100%,1);
+  --font-secondary:hsla(0,0%,0%,1);
+  --font-muted: hsla(0,0%,85%,1);
+
+  color-scheme: dark;
+  line-height: 1.4;
+  font-size: 100%;
+  word-break: break-word;
+
+}
+
+*{
+  margin: 0;
+  padding :0;
+  box-sizing: border-box;  
+}
+
+*{
+    font-family: var(--inter-font);
+
+}
+
+body{
+  color: var(--logo-white);
+  background: var(--surface);
+}
+
+#root{
+  display: flex;
+  flex-direction: column;
+}
+
+#nprogress{
+  position: relative;
+  z-index: 2147638;
+}
+
+.appMain{
+  padding: 0 1rem;
+}

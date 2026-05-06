@@ -1,0 +1,24 @@
+
+.authCard{
+    padding: 1rem;
+    width: min(20rem, 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--elevated);
+    border-radius: .5rem;
+}
+
+.authCard__title{
+    font-size: clamp(2rem, 4vw, 1.5rem);
+}
+
+.authCard__img{
+    border-radius: 100%;
+    width: min(7rem, 100%);
+}
+
+.authCard__smallText{
+    margin-top: 1rem;
+}

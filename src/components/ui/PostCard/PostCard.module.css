@@ -1,0 +1,59 @@
+
+.postcard{
+    width: 100%;
+    padding: 1rem;
+}
+
+.postcard__header{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.postcard__metadata{
+    display: flex;
+    flex-direction: column;
+}
+
+.postcard__username{
+    font-weight: 700;
+    font-size: 1.1rem;
+    /* text-overflow: ellipsis; */
+}
+
+.postcard__avatar{
+    width: 3.2rem;
+    aspect-ratio: 4/3.5;
+    object-fit: cover;
+    border-radius: .2rem;
+    border: .1rem solid var(--elevated-component);
+}
+
+.postcard__avatar.postcard__avatarSmall{
+    width: 2.8rem;
+}
+
+.postcard__figcaption{
+    margin: .5rem 0;
+    white-space: pre-line;
+}
+
+.postcard__attachment{
+    border-radius: .5rem;
+    margin-bottom: 1rem;
+    display: block;
+    width: 100%;
+    border: .15rem solid var(--elevated-component);
+}
+
+.postcard__footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.postcard__footerSectionRight,
+.postcard__footerSectionLeft{
+    display: flex;
+    gap: 2.4rem
+}
