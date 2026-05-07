@@ -1,10 +1,11 @@
-import FormCard from "../../components/ui/FormCard/FormCard";
-import FluentCard from "../../components/ui/FluentCard";
-import InputField from "../../components/ui/InputField/InputField";
-import PostCard from "../../components/ui/PostCard/PostCard";
+import FormCard from "../../../components/ui/FormCard/FormCard";
+import FluentCard from "../../../components/ui/FluentCard";
+import InputField from "../../../components/ui/InputField/InputField";
+import PostCard from "../../../components/ui/PostCard/PostCard";
+
 import s from "./ViewComment.module.css";
 import { useState } from "react";
-import { useAuth } from "../../hooks/auth";
+import { useAuth } from "../../../hooks/auth";
 
 export default function ViewComment({ comments, ...props }){
 
@@ -13,7 +14,9 @@ export default function ViewComment({ comments, ...props }){
 
     const { user, fetchBackend } = useAuth();
 
-    const handleComment = async () => {}
+    const handleComment = async () => {
+        
+    }
 
     return(
         <FluentCard className={s.comments} {...props}>
@@ -22,7 +25,7 @@ export default function ViewComment({ comments, ...props }){
 
                 <h2 className={s.comments__headerTitle}>
                     Comments
-                    ({ comments?.length })
+                    ({ comments?.length || 0 })
                 </h2>
 
             </div>
@@ -34,7 +37,7 @@ export default function ViewComment({ comments, ...props }){
                 <InputField id="comment"
                             name="comment"
                             type="textarea"
-                            rows="10"
+                            rows="5"
                             placeholder="Comment... (max 16384 characters)"
                             onChange={(e) => setComment(e.target.value)}
                             onClick={() => setError("")}

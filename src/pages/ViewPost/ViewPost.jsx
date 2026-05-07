@@ -5,7 +5,7 @@ import { useAuth } from "../../hooks/auth";
 import { useEffect, useState } from "react";
 import FluentCard from "../../components/ui/FluentCard";
 import BackButton from "../../components/ui/BackButton";
-import ViewComment from "../ViewComment/ViewComment";
+import ViewComment from "../../components/layout/ViewComment/ViewComment";
 import nProgress from "nprogress";
 
 export default function ViewPost(){
@@ -84,9 +84,6 @@ export default function ViewPost(){
                 </>
 
             )}
-
-                
-
 
         </section>
     )

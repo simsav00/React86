@@ -5,6 +5,19 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+
+    animation: fadeTop .35s ease;
+}
+
+@keyframes fadeTop{
+    from{
+        transform: translateY(-50%);
+        opacity: 0;
+    }
+    to{
+        transform: none;
+        opacity: 1;
+    }
 }
 
 .viewpost__header{

@@ -61,3 +61,7 @@ body{
 .appMain{
   padding: 0 1rem;
 }
+
+a[data-discover=true]{
+  color: currentColor;
+}

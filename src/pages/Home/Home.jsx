@@ -53,7 +53,7 @@ export default function Home(){
 
     useEffect(() => {
         fetchPosts();
-    }, [category]);
+    }, [currentCategory]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -61,8 +61,7 @@ export default function Home(){
             window.innerHeight + window.scrollY >= document.body.offsetHeight - 800;
 
             if(bottom) fetchPosts();
-        };
-
+        }
             window.addEventListener("scroll", handleScroll);
             return () => window.removeEventListener("scroll", handleScroll);
         }, [fetchPosts]);

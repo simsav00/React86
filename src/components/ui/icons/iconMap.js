@@ -7,6 +7,9 @@ import LoginIcon from "./LoginIcon";
 import RegisterIcon from "./RegisterIcon";
 import ShareIcon from "./ShareIcon";
 import BackIcon from "./BackIcon";
+import HamburgerMenuIcon from "./HamburgerMenuIcon";
+import CloseIcon from "./CloseIcon";
+import CarIcon from "./CarIcon";
 
 const icons = {
   comment: CommentIcon,
@@ -17,7 +20,10 @@ const icons = {
   login: LoginIcon,
   register: RegisterIcon,
   share: ShareIcon,
-  back: BackIcon
+  back: BackIcon,
+  hamburgermenu: HamburgerMenuIcon,
+  close: CloseIcon,
+  car: CarIcon,
 };
 
 export default icons;

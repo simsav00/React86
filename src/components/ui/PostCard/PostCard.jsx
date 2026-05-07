@@ -25,7 +25,7 @@ export default function PostCard({ username,
                                    ...props }){
 
     const img_ext = [
-        "jpg",  "webp", "png", "apng",  "gif",  "webp", "avif",
+        "jpg",  "webp", "png", "apng",  "gif", "avif",
         "heic", "heif", 
         "tif",  "tiff", "bmp",  "ico",  "jxl",
         "dng",  "cr2",  "cr3",  "nef",  "arw",  "raf",  "orf",
@@ -56,7 +56,7 @@ export default function PostCard({ username,
         <FluentCard elementType="article" 
                     brighter={brighter} 
                     className={`${s.postcard} ${className || ""}`}   
-                    style={{ padding: tight ? ".5rem" : "1rem", ...style }}
+                    style={{ padding: tight ? ".65rem" : "1rem", ...style }}
                     {...props}>
 
             <header className={s.postcard__header}>
@@ -64,7 +64,7 @@ export default function PostCard({ username,
                     <Link to={profile.link}>
                         <img className={`${profile?.small && s.postcard__avatarSmall}  ${s.postcard__avatar}`} 
                              src={profile.avatar} 
-                             alt={`${username}'s Avatar.`} 
+                             alt={`${username}'s profile picture.`} 
 
                         />
                     </Link>

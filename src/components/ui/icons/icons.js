@@ -7,4 +7,7 @@ export { default as LoginIcon } from "./LoginIcon";
 export { default as RegisterIcon } from "./RegisterIcon";
 export { default as ShareIcon } from "./ShareIcon";
 export { default as BackIcon} from "./BackIcon";
+export { default as HamburgerMenuIcon} from "./HamburgerMenuIcon";
+export { default as CloseIcon } from "./CloseIcon";
+export { default as CarIcon } from "./CarIcon";
 
