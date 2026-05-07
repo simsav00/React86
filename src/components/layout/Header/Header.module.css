@@ -4,7 +4,7 @@
     top: 0;
     
     background: var(--elevated);
-    z-index: 9200;
+    z-index: 9600  ;
     box-shadow: 0 0 2rem var(--elevated);
     border-bottom: .15rem solid var(--elevated-component);  
     margin-bottom: 2rem; 

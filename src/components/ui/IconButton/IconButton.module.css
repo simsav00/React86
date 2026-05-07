@@ -2,7 +2,6 @@
 .iconButton{
     background: none;
     border: none;
-    opacity: .6;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -11,10 +10,14 @@
     font-size: 1rem;
     font-weight: 500;
 
-    transition: .1s opacity;
 }
 
-.iconButton:hover{
+.iconButton.iconButton.iconButtonHover{
+    transition: .1s opacity;
+    opacity: .6;
+}
+
+.iconButton.iconButtonHover:hover{
     opacity: 1;
 }
 
@@ -23,6 +26,6 @@
 }
 
 .iconButton > svg{
-    width: 1.5rem;
+    width: var(--iconWidth);
     color: currentColor
 }

@@ -1,7 +1,6 @@
 import s from "./PostCard.module.css";
 import SmallText from "../SmallText";
 import { Link } from "react-router-dom";
-import icons from "../icons/iconMap";
 import IconButton from "../IconButton/IconButton";
 import FluentCard from "../FluentCard";
 
@@ -122,13 +121,11 @@ export default function PostCard({ username,
                 
                     <div className={s.postcard__footerSectionLeft}>
                         {footerProps?.sectionLeft?.map(({ icon, title, text, link, showOnCondition=true }) => {
-                            const Icon = icon ? icons[icon] : null;
                             
                             return (
                                 showOnCondition && (
-                                    <Link key={title} to={link} title={title} aria-label={title}>
-                                        <IconButton text={text} aria-hidden={true}>
-                                            {Icon && <Icon/>}
+                                    <Link key={title} to={link} title={title} aria-label={title} icon={icon}>
+                                        <IconButton text={text} aria-hidden={true} icon={icon}>
                                         </IconButton>
                                     </Link>
                                 )
@@ -139,13 +136,11 @@ export default function PostCard({ username,
 
                     <div className={s.postcard__footerSectionRight}>
                         {footerProps?.sectionRight?.map(({ icon, title, text, link, showOnCondition=true }) => {
-                            const Icon = icon ? icons[icon] : null;
                             
                             return (
                                 showOnCondition && (
                                     <Link key={title} title={title} to={link} aria-label={title}>
-                                        <IconButton text={text} aria-hidden={true}>
-                                            {Icon && <Icon/>}
+                                        <IconButton text={text} aria-hidden={true} icon={icon}>
                                         </IconButton>
                                     </Link>
                                 )
