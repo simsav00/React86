@@ -3,13 +3,11 @@
     background: none;
     border: none;
     cursor: pointer;
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    justify-content: center;
     gap: .25rem;
     font-size: 1rem;
     font-weight: 500;
-
 }
 
 .iconButton.iconButton.iconButtonHover{
@@ -26,6 +24,5 @@
 }
 
 .iconButton > svg{
-    width: var(--iconWidth);
     color: currentColor
 }

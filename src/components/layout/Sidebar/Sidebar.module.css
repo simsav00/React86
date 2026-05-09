@@ -1,33 +1,78 @@
 
-.nav__sidebar{
-    list-style: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: 1rem;
+
+.sidebar{
+    position: absolute;
+    z-index: 9600;
+    top: 100%;
+    width: min(19rem, 100%);
     height: 100dvh;
+    padding: .75rem 1.25rem;
     background: var(--elevated);
     border-right: .15rem solid var(--elevated-component);
     display: flex;
     flex-direction: column;
-    gap: .5rem;
+
+    transition: transform .4s;
+    transform: translateX(-120%);
 }
 
-.nav__sidebarLi{
-    display: flex;
-    width: 100%;
+.sidebarActive{
+    transform: none;
 }
 
-.nav__sidebarA{
-    text-decoration: none;
-    width: 100%;
+.sidebar__header{
+    border-bottom: .15rem solid var(--elevated-component);
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
     opacity: .7;
-    padding: .5rem;
-
-    transition: .1s;
 }
 
-.nav__sidebarA:hover{
+.sidebar__ul{
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    margin-bottom: auto;
+        overflow-y: auto;
+
+}
+
+.sidebar__li{
+    display: flex;
+    border-radius: .25rem;
+}
+
+.sidebar__a{
+    opacity: .6;
+    border-radius: .25rem;
+    transition: .1s;
+    padding: .5rem;
+    width: 100%;
+}
+
+.sidebar__a.active{
+    background: var(--elevated-component);
+}
+
+.sidebar__a:hover,
+.sidebar__a:active{
     opacity: 1;
     background: var(--elevated-component);
+}
+
+.sidebar__aIcon{
+    width: 100%;
+}
+
+.sidebar__footer{
+    text-align: center;
+}
+
+
+.sidebar__overlay{
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    background: #000;
+    visibility: hidden;
+    opacity: 0;
 }

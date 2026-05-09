@@ -1,21 +1,70 @@
+import { Link, useParams } from "react-router-dom";
 import IconButton from "../../ui/IconButton/IconButton";
+import SmallText from "../../ui/SmallText"
+import s from "./Sidebar.module.css";
+import { useAuth } from "../../../hooks/auth";
+import { useEffect, useState } from "react";
 
-export default function Sidebar({ active }){
+export default function Sidebar({ sidebar, setSidebar }){
+
+    const { fetchBackend } = useAuth();
+    const { category } = useParams();
+    const [categories, setCategories] = useState([]);
+
+    const getCategoriesList = async () => {
+
+        const res = await fetchBackend("categories_list");
+
+        if(!res.ok)
+            throw new Error("Unable to get categories list: " + res.status);
+
+        const json = await res.json();
+
+        setCategories(Object.entries(json.data));
+    }
+
+    useEffect(() => {
+        getCategoriesList();
+    },[])
 
     return(
-        <aside className={`${s.sidebar} ${active && s.nav__sidebarActive}`}>
-            
-            <ul className={s.sidebar__ul}>
-                {categories?.map(([key, value]) => (
-                    <li className={s.sidebar__li} key={key}>
-                        <Link to={`/${key}`} className={s.sidebar__a}>
-                            <IconButton text={value} hover={false} icon="car"/>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-            
+        <>
+            <aside className={`${s.sidebar} ${sidebar ? s.sidebarActive : ""}`}>
 
-        </aside>
+                <header className={s.sidebar__header}>
+                    <h2 className={s.sidebar__title}>
+                        Categories
+                    </h2>
+                </header>
+                
+                <ul className={s.sidebar__ul}>
+
+                    {categories?.map(([key, value]) => (
+
+                        <li className={s.sidebar__li} key={key}>
+                            <Link to={`/${key}`} 
+                                  className={`${s.sidebar__a}`}
+                                  onClick={() => setSidebar(!sidebar)}>
+                                <IconButton text={value} 
+                                            hover={false} 
+                                            icon="car"
+                                            className={s.sidebar__aIcon}
+                                            />
+                            </Link>
+                        </li>
+
+                    ))}
+
+                </ul>
+                
+                <footer className={s.sidebar__footer}>
+                    <SmallText>
+                        Copyright 2026 © Auto86
+                    </SmallText>
+                </footer>   
+            </aside>
+
+            <div className={s.sidebar__overlay} aria-hidden="true"></div>
+        </>
     )
 }

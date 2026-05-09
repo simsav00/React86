@@ -25,6 +25,9 @@ html {
   --font-secondary:hsla(0,0%,0%,1);
   --font-muted: hsla(0,0%,85%,1);
 
+  --z-index-surface: 1;
+  --z-index-elevated: 2;
+
   color-scheme: dark;
   line-height: 1.4;
   font-size: 100%;
@@ -59,9 +62,11 @@ body{
 }
 
 .appMain{
+  margin-top: 3rem;
   padding: 0 1rem;
 }
 
 a[data-discover=true]{
   color: currentColor;
+  text-decoration: none;
 }

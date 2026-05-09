@@ -29,7 +29,7 @@ export default function Home(){
             const res = await fetchBackend("posts", {}, { offset: offset, category: currentCategory });
 
             if(!res.ok)
-                throw new Error(`Unable to fetch posts:${res.status}`);
+                throw new Error(`Unable to fetch posts: ${res.status}`);
 
             const json = await res.json();
 
