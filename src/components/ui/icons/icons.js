@@ -10,4 +10,6 @@ export { default as BackIcon} from "./BackIcon";
 export { default as HamburgerMenuIcon} from "./HamburgerMenuIcon";
 export { default as CloseIcon } from "./CloseIcon";
 export { default as CarIcon } from "./CarIcon";
+export { default as InfoIcon } from "./InfoIcon";
+
 

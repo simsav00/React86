@@ -17,7 +17,7 @@ export default function Home(){
     
     const { user, fetchBackend } = useAuth();
 
-    const fetchPosts = useCallback(async () => {
+    const fetchPosts = async () => {
 
         if(loading.current || !hasMore) return;
 
@@ -49,18 +49,19 @@ export default function Home(){
             nProgress.done();
             loading.current = false;
         }
-    }, [offset, hasMore]);
+    }
 
     useEffect(() => {
         fetchPosts();
-    }, [currentCategory]);
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
             const bottom =
             window.innerHeight + window.scrollY >= document.body.offsetHeight - 800;
 
-            if(bottom) fetchPosts();
+            if(bottom) 
+                fetchPosts();
         }
             window.addEventListener("scroll", handleScroll);
             return () => window.removeEventListener("scroll", handleScroll);
@@ -116,7 +117,7 @@ export default function Home(){
 
             ))}
 
-            {!posts && <h2>No posts found.</h2>}
+            {posts.length === 0 && <h2>No posts found.</h2>}
 
         </section>
     )

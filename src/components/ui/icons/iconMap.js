@@ -10,6 +10,7 @@ import BackIcon from "./BackIcon";
 import HamburgerMenuIcon from "./HamburgerMenuIcon";
 import CloseIcon from "./CloseIcon";
 import CarIcon from "./CarIcon";
+import InfoIcon from "./InfoIcon";
 
 const icons = {
   comment: CommentIcon,
@@ -24,6 +25,7 @@ const icons = {
   hamburgermenu: HamburgerMenuIcon,
   close: CloseIcon,
   car: CarIcon,
+  info: InfoIcon
 };
 
 export default icons;

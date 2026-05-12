@@ -47,7 +47,11 @@ export default function Sidebar({ sidebar, setSidebar }){
                                   onClick={() => setSidebar(!sidebar)}>
                                 <IconButton text={value} 
                                             hover={false} 
-                                            icon="car"
+                                            icon={
+                                                  key.toLowerCase() === "changelog" ? "info"
+                                                : key.toLowerCase() === "all" ? "hamburgermenu" 
+                                                : "car"
+                                            }
                                             className={s.sidebar__aIcon}
                                             />
                             </Link>
@@ -64,7 +68,9 @@ export default function Sidebar({ sidebar, setSidebar }){
                 </footer>   
             </aside>
 
-            <div className={s.sidebar__overlay} aria-hidden="true"></div>
+            <div className={`${s.sidebar__overlay} ${sidebar ? s.sidebar__overlayActive : ""}`} 
+                 aria-hidden="true"
+                 onClick={() => setSidebar(!sidebar)}></div>
         </>
     )
 }
