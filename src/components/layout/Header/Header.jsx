@@ -12,6 +12,13 @@ export default function Header({ brand }){
     
     const [sidebar, setSidebar] = useState(false);
 
+    useEffect(() => {
+        if(window.innerWidth >= 0)
+        {
+            setSidebar(!sidebar);
+        }
+    },[]);
+
     return(
         <div className={s.wrapper}>
             <header className={s.header}>

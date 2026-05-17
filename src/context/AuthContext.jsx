@@ -6,19 +6,25 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children} ) => {
 
     const base_url = "http://localhost/Auto86/";
-    const fetchBackend = (type, options = {}, additionalParams = {}) => {
+    const fetchBackend = (uri, options = {}) => {
 
-        const params = new URLSearchParams({
-          t: type,
-          ...additionalParams,
-        });
-
-        return fetch(`${base_url}?${String(params)}`, {
-            method: options.method || "POST",
+        return fetch(`${base_url}${uri}`, {
+            method: options.method || "GET",
             credentials: "include",
             cache: "no-store",
             ...options
         });
+
+        /* const params = new URLSearchParams({
+           t: type,
+           ...additionalParams,
+         });
+         return fetch(`${base_url}?${String(params)}`, {
+             method: options.method || "POST",
+             credentials: "include",
+             cache: "no-store",
+             ...options
+         }); */
     }
 
     const [user, setUser] = useState(null);
@@ -28,7 +34,11 @@ export const AuthProvider = ({ children} ) => {
         
         const fetchMe = async () => {
             try{
-                const res = await fetchBackend("me");
+                const res = await fetchBackend("users/me", {
+                    method: "GET"
+                });
+
+                if(res.status === 401) return;
 
                 if(!res.ok) 
                     throw new Error(`HTTP Error while fetching user: ${res.status}`);
@@ -55,7 +65,10 @@ export const AuthProvider = ({ children} ) => {
         setLoading(true);
 
         try{
-            const resLogin = await fetchBackend("login", { body: formData })
+            const resLogin = await fetchBackend("auth/login", { 
+                method: "POST",
+                body: formData 
+            });
 
             if(resLogin.status === 401) 
                 throw new Error("Invalid credentials.");
@@ -63,13 +76,13 @@ export const AuthProvider = ({ children} ) => {
             if(!resLogin.ok)
                 throw new Error(`Error while logging in: ${resLogin.status}`);
 
-            const resMe = await fetchBackend("me");
+            const resMe = await fetchBackend("users/me");
             const userData = await resMe.json();
 
             if(!resMe.ok)
                 throw new Error(`Error while fetching userData: ${resMe.status}`);
 
-            userData.data && setUser(userData.data);
+            userData.data ? setUser(userData.data) : setUser(null);
         }
         finally{
             setLoading(false);
@@ -81,7 +94,10 @@ export const AuthProvider = ({ children} ) => {
         setLoading(true);
 
         try{
-            const resRegister = await fetchBackend("register", { body: formData });
+            const resRegister = await fetchBackend("auth/register", { 
+                method: "POST",
+                body: formData 
+            });
             const resData = await resRegister.json();
 
             if(resRegister.status === 400)
@@ -104,7 +120,9 @@ export const AuthProvider = ({ children} ) => {
         setLoading(true);
         
         try{
-            const resLogout = await fetchBackend("logout");
+            const resLogout = await fetchBackend("logout", {
+                method: "POST"
+            });
 
             if(!resLogout.ok)
                 throw new Error(`Error while logging user out: ${resLogout.status}`);

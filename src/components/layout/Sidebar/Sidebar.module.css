@@ -32,8 +32,8 @@
     flex-direction: column;
     gap: .25rem;
     margin-bottom: auto;
-        overflow-y: auto;
-
+    overflow-y: auto;
+    padding-bottom: 2.4rem;
 }
 
 .sidebar__li{
@@ -47,9 +47,10 @@
     transition: .1s;
     padding: .5rem;
     width: 100%;
+    
 }
 
-.sidebar__a.active{
+.sidebar__aActive{    
     background: var(--elevated-component);
 }
 

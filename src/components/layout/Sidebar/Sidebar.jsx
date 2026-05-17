@@ -13,7 +13,9 @@ export default function Sidebar({ sidebar, setSidebar }){
 
     const getCategoriesList = async () => {
 
-        const res = await fetchBackend("categories_list");
+        const res = await fetchBackend("categories_list", {
+            method: "GET"
+        });
 
         if(!res.ok)
             throw new Error("Unable to get categories list: " + res.status);
@@ -25,7 +27,7 @@ export default function Sidebar({ sidebar, setSidebar }){
 
     useEffect(() => {
         getCategoriesList();
-    },[])
+    }, [])
 
     return(
         <>
@@ -41,7 +43,7 @@ export default function Sidebar({ sidebar, setSidebar }){
 
                     {categories?.map(([key, value]) => (
 
-                        <li className={s.sidebar__li} key={key}>
+                        <li className={`${s.sidebar__li} ${category === key ? s.sidebar__aActive : ""}`} key={key}>
                             <Link to={`/${key}`} 
                                   className={`${s.sidebar__a}`}
                                   onClick={() => setSidebar(!sidebar)}>
@@ -52,8 +54,8 @@ export default function Sidebar({ sidebar, setSidebar }){
                                                 : key.toLowerCase() === "all" ? "hamburgermenu" 
                                                 : "car"
                                             }
-                                            className={s.sidebar__aIcon}
-                                            />
+                                            className={`${s.sidebar__aIcon}`}
+                                />
                             </Link>
                         </li>
 

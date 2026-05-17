@@ -4,6 +4,7 @@ import { useAuth } from "../../hooks/auth";
 import PostCard from "../../components/ui/PostCard/PostCard";
 import s from "./Home.module.css";
 import { useParams } from "react-router-dom";
+import SmallText from "../../components/ui/SmallText";
 
 export default function Home(){
 
@@ -11,6 +12,7 @@ export default function Home(){
     const loading = useRef(false);
     const [offset, setOffset]   = useState(0);
     const [hasMore, setHasMore] = useState(true);
+    const triggerRef = useRef(null);
 
     const { category } = useParams();
     const currentCategory = category || "all";
@@ -18,54 +20,73 @@ export default function Home(){
     const { user, fetchBackend } = useAuth();
 
     const fetchPosts = async () => {
-
         if(loading.current || !hasMore) return;
 
         loading.current = true;
-        
         nProgress.start();
 
         try{
-            const res = await fetchBackend("posts", {}, { offset: offset, category: currentCategory });
+            const res = await fetchBackend(`posts/?limit=20&offset=${offset}&category=${currentCategory}`, {
+                method: "GET",
+            });
 
             if(!res.ok)
                 throw new Error(`Unable to fetch posts: ${res.status}`);
 
             const json = await res.json();
-
             const newPosts = json.data;
 
-            if(newPosts.length < 20)
+            if(newPosts == null){
                 setHasMore(false);
+                return;
+            }
 
-            setOffset((offset) => offset + 20);
+            if(newPosts.length < 20){
+                setHasMore(false);
+            }
 
-            setPosts((post) => [...post, ...newPosts]);
-        } 
-        catch(e){
-            console.error(e);
+            setPosts((oldPosts) => [...oldPosts, ...newPosts]);
+
+            setOffset((oldOffset) => oldOffset + 20);
+        }
+        catch(err){
+            console.error(err);
         }
         finally{
-            nProgress.done();
             loading.current = false;
+            nProgress.done();
         }
     }
 
     useEffect(() => {
-        fetchPosts();
-    }, []);
+        setPosts([]);
+        setOffset(0);
+        setHasMore(true);
+    }, [category]);
 
     useEffect(() => {
-        const handleScroll = () => {
-            const bottom =
-            window.innerHeight + window.scrollY >= document.body.offsetHeight - 800;
+        fetchPosts();
+    }, [offset, category]);
 
-            if(bottom) 
+    useEffect(() => {
+
+        const obv = new IntersectionObserver((entries) => {
+            
+            if(entries[0].isIntersecting && hasMore){
                 fetchPosts();
+            }
+
+        }, {
+            threshold: .7
+        });
+
+        if(triggerRef.current){
+            obv.observe(triggerRef.current);
         }
-            window.addEventListener("scroll", handleScroll);
-            return () => window.removeEventListener("scroll", handleScroll);
-        }, [fetchPosts]);
+
+        return () => obv.disconnect();
+
+    }, [hasMore, offset]);
 
     return(
         <section className={s.post__lists}>
@@ -117,7 +138,10 @@ export default function Home(){
 
             ))}
 
-            {posts.length === 0 && <h2>No posts found.</h2>}
+            <div aria-hidden="true" ref={triggerRef}></div>
+
+            {hasMore === false && <SmallText>Seems like you've reached the end.</SmallText>}
+            {posts.length === 0 && <SmallText> No posts found </SmallText>}
 
         </section>
     )

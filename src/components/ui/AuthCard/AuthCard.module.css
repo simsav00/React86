@@ -22,3 +22,7 @@
 .authCard__smallText{
     margin-top: 1rem;
 }
+
+.authCard__link{
+    color: var(--link-colour);
+}

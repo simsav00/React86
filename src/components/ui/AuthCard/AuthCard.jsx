@@ -19,7 +19,7 @@ export default function AuthCard({ children, logo, title, authText, formProps })
 
             <SmallText className={s.authCard__smallText}>
                 {authText?.text + " "}
-                <Link to={authText?.link}>
+                <Link to={authText?.link} className={s.authCard__link}>
                     {authText?.textLink}
                 </Link>
             </SmallText>
