@@ -21,7 +21,9 @@ export default function ViewPost(){
         try{
             nProgress.start();
 
-            const res = await fetchBackend("post", {}, { id: id });
+            const res = await fetchBackend(`posts/${id}`, {
+                method: "GET"
+            });
 
             if(res.status === 404) 
                 navigate("/", replace);

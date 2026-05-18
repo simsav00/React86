@@ -24,7 +24,7 @@ html {
   --font-primary: hsla(0,0%,100%,1);
   --font-secondary:hsla(0,0%,0%,1);
   --font-muted: hsla(0,0%,85%,1);
-  --link-colour: hsla(222,50%,50%,1);
+  --link-colour: hsla(186,60%,60%,1);
 
   --z-index-surface: 1;
   --z-index-elevated: 2;
@@ -67,7 +67,7 @@ body{
   padding: 0 1rem;
 }
 
-a[data-discover=true]:not(a){
+a[data-discover=true]:has(:not(div)){
   color: currentColor;
   text-decoration: none;
 }

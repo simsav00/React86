@@ -62,6 +62,10 @@ export default function Home(){
         setPosts([]);
         setOffset(0);
         setHasMore(true);
+        window.scrollTo({
+            top: 0,
+            behavior:"smooth"
+        });
     }, [category]);
 
     useEffect(() => {
@@ -139,9 +143,6 @@ export default function Home(){
             ))}
 
             <div aria-hidden="true" ref={triggerRef}></div>
-
-            {hasMore === false && <SmallText>Seems like you've reached the end.</SmallText>}
-            {posts.length === 0 && <SmallText> No posts found </SmallText>}
 
         </section>
     )

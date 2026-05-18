@@ -17,6 +17,7 @@ import ViewUser from "./pages/ViewUser/ViewUser";
 import ViewPost from "./pages/ViewPost/ViewPost";
 import EditPost from "./pages/EditPost/EditPost";
 import DeletePost from "./pages/DeletePost";
+import NewPost from "./pages/NewPost/NewPost";
 
 
 let routes = createBrowserRouter([
@@ -29,7 +30,9 @@ let routes = createBrowserRouter([
       { path: "/user/:id?",   element: <ViewUser/>   },
       { path: "/edit/:id?",   element: <EditPost/>   },
       { path: "/delete/:id?", element: <DeletePost/> },
-      { path: "/userarea",    element: <UserArea/>   }
+      { path: "/userarea",    element: <UserArea/>   },
+      { path: "/new",         element: <NewPost/>    },
+
   ]},
 
     { path: "/login", element: <Login/> },
